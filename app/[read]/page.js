@@ -17,7 +17,7 @@ const response=res.data;
       <p className=' text-red-800 font-bold capitalize mb-4  text-xl text-center font-serif'>{response.title}</p>
       <p className=' text-black capitalize text-lg text-justify'style={{  textIndent: '1em' }}>{response.body}</p>
     <Link href="/" className="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 rounded p-2 ">Back</Link>
-    <Link href="/update" className="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 rounded p-2 ">Edit</Link>
+    <Link href={`/update`} className="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 rounded p-2 ">Edit</Link>
     </div>
     </div>
   )

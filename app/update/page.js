@@ -18,7 +18,7 @@ const Page = () => {
         // Assuming you pass the topic ID as a prop from the parent component
         // Replace 'topicIdProp' with the actual prop name you use to pass the topic ID
         if (id) {
-            axios.get(`http://localhost:3000/topic/${id}`)
+            axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`)
                 .then(res => {
                     setValues(res.data);
                 })
@@ -28,7 +28,7 @@ const Page = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.put(`http://localhost:3000/topic/${id}`, values)
+        axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, values)
             .then(res => {
                 console.log('Update successful:', res.data);
                 // Handle success if needed

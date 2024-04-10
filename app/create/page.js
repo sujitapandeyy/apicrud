@@ -10,7 +10,7 @@ const Page = () => {
     });
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post("https://jsonplaceholder.typicode.com/posts", values)
+        axios.post('https://jsonplaceholder.typicode.com/posts', values)
         // axios.post("http://localhost:3000/topic", values)
             .then(res => {
                 console.log(res);

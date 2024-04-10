@@ -45,6 +45,8 @@ function Home() {
   {catImages.map((post) => {
     const { id, title, body } = post;
     return (
+      <>
+      <div>
       <Link href={`${id}`}>
 
       <li className="p-1" key={id}>
@@ -54,10 +56,12 @@ function Home() {
         <div>
           {/* <Link href={`/read/${id}`}>read</Link> */}
           {/* <Link href={`/update/${id}`}>Edit</Link> */}
-      <button onClick={() => handleDelete(id)}>Delete</button>
         </div>
       </li>
       </Link>
+      <button onClick={() => handleDelete(id)}>Delete</button>
+      </div>
+      </>
     );
   })}
 </ul>
