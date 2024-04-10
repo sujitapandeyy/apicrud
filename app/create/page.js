@@ -4,18 +4,17 @@ import React, { useState } from 'react';
 
 const Page = () => {
     const [values, setValues] = useState({
-        id: '',
         title: '',
         body: ''
     });
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post('https://jsonplaceholder.typicode.com/posts', values)
-        // axios.post("http://localhost:3000/topic", values)
+        // axios.post('https://jsonplaceholder.typicode.com/posts', values)
+        axios.post("http://localhost:3000/topic", values)
             .then(res => {
                 console.log(res);
                 const newTopic = res.data;
-                setValues({ id: '',title: '', body: '' }); 
+                setValues({ title: '', body: '' }); 
                 // setTopics(prevTopics => [...prevTopics, newTopic]);
 
                 // navigate("/");
@@ -32,15 +31,7 @@ const Page = () => {
                 className='grid grid-cols-1 gap-4 p-6 mt-2 bg-white rounded-lg max-w-md mx-auto shadow-md'
             >
                 <h2 className="text-md font-bold text-gray-800 justify-center flex mt-6 p-6">Add new</h2>
-                <input
-                    type="text"
-                    name="id"
-                    placeholder="id"
-                    required
-                    className="border rounded py-2 px-4"
-                    value={values.id}
-                    onChange={e => setValues({ ...values, id: e.target.value })}
-                />
+              
                 <input
                     type="text"
                     name="title"

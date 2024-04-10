@@ -1,26 +1,23 @@
-
 'use client'
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation'; // Import useParams from next/router
 
 const Page = () => {
+    const {id} = useParams(); // Access the id parameter using useParams()
+
     const [values, setValues] = useState({
         id: '',
         title: '',
         body: ''
     });
 
-    // This state will hold the ID of the topic being updated
-    const [id, setTopicId] = useState('');
-
     useEffect(() => {
-        // Fetch the topic data to be updated
-        // Assuming you pass the topic ID as a prop from the parent component
-        // Replace 'topicIdProp' with the actual prop name you use to pass the topic ID
         if (id) {
-            axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`)
+            // axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`)
+            axios.get(`http://localhost:3000/topic/${id}`)
                 .then(res => {
-                    setValues(res.data);
+                    setValues(res.data); // Set the complete data received from the API
                 })
                 .catch(err => console.log(err));
         }
@@ -28,9 +25,12 @@ const Page = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, values)
+        // axios.patch(`https://jsonplaceholder.typicode.com/posts/${id}`, values)
+        axios.patch(`http://localhost:3000/topic/${id}`, values)
             .then(res => {
                 console.log('Update successful:', res.data);
+                setValues({ title: '', body: '' }); 
+
                 // Handle success if needed
             })
             .catch(err => console.log(err));
@@ -52,15 +52,6 @@ const Page = () => {
                 className='grid grid-cols-1 gap-4 p-6 mt-2 bg-white rounded-lg max-w-md mx-auto shadow-md'
             >
                 <h2 className="text-md font-bold text-gray-800 justify-center flex mt-6 p-6">Update</h2>
-                <input
-                    type="text"
-                    name="id"
-                    placeholder="id"
-                    required
-                    className="border rounded py-2 px-4"
-                    value={values.id}
-                    onChange={handleChange}
-                />
                 <input
                     type="text"
                     name="title"
